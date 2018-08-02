@@ -1,4 +1,5 @@
 CC=g++
+RM=rm
 TARGET ?= nnet.out
 SRC_DIRS ?= .
 
@@ -15,7 +16,7 @@ $(TARGET): $(OBJS)
 		$(CC) $(LDFLAGS) $(OBJS) -o $@ $(LOADLIBES) $(LDLIBS)
 
 .PHONY: clean
-	clean:
-		$(RM) $(TARGET) $(OBJS) $(DEPS)
+clean:
+	$(RM) $(TARGET) $(OBJS) $(DEPS)
 
 -include $(DEPS)

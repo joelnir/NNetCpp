@@ -1,7 +1,7 @@
 #ifndef EDGE_H
 #define EDGE_H
 
-#include "node.h"
+#include "Node.h"
 
 //Forward declararions
 class Neuron;
@@ -15,14 +15,14 @@ class Neuron;
  */
 class Edge {
     private:
-        double weight;
-        Node* input;
-        Node* output;
+        double weight = 0;
+        Node* input = nullptr;
+        Neuron* output = nullptr;
     public:
         /**
          * Create a new Edge between 2 Nodes. Start with given weight
          */
-        Edge(double startWeight, Node* input = nullptr, Node* output = nullptr);
+        Edge(double startWeight, Node* input = nullptr, Neuron* output = nullptr);
 
         /**
          * Set the Node this Edge starts at
@@ -40,6 +40,12 @@ class Edge {
          * Update the weight for the edge based on the backpropagation algorithm
          */
         void updateWeight(double learningRate);
+
+        /**
+         * Get the output from the edge, that is
+         * the input weighted with the current weight
+         */
+        double getOutput();
 };
 
 #endif // EDGE_H
