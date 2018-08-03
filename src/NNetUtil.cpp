@@ -1,7 +1,7 @@
 #include <math.h>
-#include "NnetUtil.h"
+#include "NNetUtil.h"
 
-double NnetUtil::unitStep(double x){
+double NNetUtil::unitStep(double x){
     if(x < 0){
         return 0;
     }
@@ -10,7 +10,7 @@ double NnetUtil::unitStep(double x){
     }
 }
 
-double NnetUtil::sigmoid(double x){
+double NNetUtil::sigmoid(double x){
     return 1.0 / (1.0 + exp(-1.0 * x));
 }
 

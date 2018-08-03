@@ -1,4 +1,4 @@
-namespace NnetUtil{
+namespace NNetUtil{
     /**
      * Unit step function
      *
