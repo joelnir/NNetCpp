@@ -3,6 +3,7 @@
 
 #include "Neuron.h"
 #include "InputNode.h"
+#include "OutputNeuron.h"
 #include "Edge.h"
 #include "NNetUtil.h"
 

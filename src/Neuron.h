@@ -6,14 +6,26 @@
 #include "Node.h"
 #include "Edge.h"
 
+// Forward declaration
+class Edge;
+
 class Neuron: public Node {
     private:
-        std::vector<double> weights;
-
         std::vector<Edge*> inputs;
         std::vector<Edge*> outputs;
 
+        double output = 0;
+
         std::function<double(double)> activationFunc;
+
+    protected:
+        double delta = 0;
+
+        /**
+         * Get the derivative of a sigmoid activation function for this node
+         */
+        double sigmoidDelta();
+
     public:
         /**
          * Create a new Neuron with the given in- and outputs
@@ -38,14 +50,24 @@ class Neuron: public Node {
         void setOutputs(std::vector<Edge*> outputs);
 
         /**
+         * Calculate and store the output from this Neuron
+         * All input Neurons should have their outputs updated before calculating this
+         */
+        void calcOutput();
+
+        /**
+         * Calculate and store the delta from this Neuron according to the GDR
+         * All output Neurons should have their deltas updated before calculating this
+         */
+        void calcDelta();
+
+        /**
          * Get the output of this Neuron
-         * TODO deisgn way to avoid calculating this multiple times
          */
         double getOutput();
 
         /**
          * Calculate delta for backpropagation
-         * TODO deisgn way to avoid calculating this multiple times
          */
         double getDelta();
 };

@@ -5,11 +5,16 @@
 
 class InputNode: public Node {
     private:
-        double value;
+        double value = 0;
 
     public:
         /**
-         * Create a new input node with the given value
+         * Create a new input Node
+         */
+        InputNode();
+
+        /**
+         * Create a new input Node with the given value
          */
         InputNode(double value);
 

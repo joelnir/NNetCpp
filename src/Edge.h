@@ -2,6 +2,7 @@
 #define EDGE_H
 
 #include "Node.h"
+#include "Neuron.h"
 
 //Forward declararions
 class Neuron;
@@ -45,7 +46,12 @@ class Edge {
          * Get the output from the edge, that is
          * the input weighted with the current weight
          */
-        double getOutput();
+        double getWeightedOutput();
+
+        /**
+         * Get the delta from the output Neuron weighted for back propagation
+         */
+        double getWeightedDelta();
 };
 
 #endif // EDGE_H

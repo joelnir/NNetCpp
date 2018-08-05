@@ -17,6 +17,7 @@ TEST(Neuron, single_input){
     nInputs.push_back(&e1);
 
     n1.setInputs(nInputs);
+    n1.calcOutput();
 
     ASSERT_NEAR(n1.getOutput(), 0.0, EPSILON);
 }
@@ -30,6 +31,7 @@ TEST(Neuron, single_sigmoid){
     nInputs.push_back(&e1);
 
     n1.setInputs(nInputs);
+    n1.calcOutput();
 
     ASSERT_NEAR(n1.getOutput(), 0.5, EPSILON);
 }
@@ -43,6 +45,7 @@ TEST(Neuron, weighted_sigmoid){
     nInputs.push_back(&e1);
 
     n1.setInputs(nInputs);
+    n1.calcOutput();
 
     ASSERT_NEAR(n1.getOutput(),  0.81757447619, EPSILON);
 }
@@ -59,6 +62,7 @@ TEST(Neuron, double_input1){
     nInputs.push_back(&e2);
 
     n1.setInputs(nInputs);
+    n1.calcOutput();
 
     ASSERT_NEAR(n1.getOutput(),  1.0, EPSILON);
 }
@@ -75,6 +79,7 @@ TEST(Neuron, double_input2){
     nInputs.push_back(&e2);
 
     n1.setInputs(nInputs);
+    n1.calcOutput();
 
     ASSERT_NEAR(n1.getOutput(),  0.0, EPSILON);
 }
@@ -100,6 +105,7 @@ TEST(Neuron, 5_inputs){
     nInputs.push_back(&e5);
 
     n1.setInputs(nInputs);
+    n1.calcOutput();
 
     ASSERT_NEAR(n1.getOutput(),   0.99981407849, EPSILON);
 }
