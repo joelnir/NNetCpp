@@ -2,7 +2,6 @@
 #define WEIGHT_GENERATOR_H
 
 class WeightGenerator{
-    private:
     public:
         /**
          * Get a new weight
