@@ -13,4 +13,3 @@ double NNetUtil::unitStep(double x){
 double NNetUtil::sigmoid(double x){
     return 1.0 / (1.0 + exp(-1.0 * x));
 }
-
