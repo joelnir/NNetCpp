@@ -1,3 +1,6 @@
+#ifndef CONNECTED_NET_H
+#define CONNECTED_NET_H
+
 #include <vector>
 
 #include "InputNode.h"
@@ -33,3 +36,5 @@ class ConnectedNet{
          */
         std::vector<double> getOutput(std::vector<double> inputValues);
 };
+
+#endif // CONNECTED_NET_H

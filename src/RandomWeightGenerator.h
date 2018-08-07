@@ -1,6 +1,11 @@
+#ifndef RANDOM_WEIGHT_GENERATOR_H
+#define RANDOM_WEIGHT_GENERATOR_H
+
 #include <random>
 
-class RandomWeightGenerator{
+#include "WeightGenerator.h"
+
+class RandomWeightGenerator: public WeightGenerator {
     private:
         std::default_random_engine engine;
         std::uniform_real_distribution<double> dist;
@@ -15,5 +20,7 @@ class RandomWeightGenerator{
         /**
          * Generate a new random weight
          */
-        double getNewWeight();
+        double getWeight();
 };
+
+#endif // RANDOM_WEIGHT_GENERATOR_H

@@ -47,7 +47,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
 
         for(int outputI = 0; outputI < outputNodes; ++outputI){
             for(int inputI = 0; inputI < inputNodes; ++inputI){
-                newEdge = new Edge(weightGen.getNewWeight(),
+                newEdge = new Edge(weightGen.getWeight(),
                     this->inputs.at(inputI),
                     this->outputs.at(outputI));
 
@@ -66,7 +66,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
         // input -> first hidden layer
         for(int outputI = 0; outputI < hiddenLayers.at(0); ++outputI){
             for(int inputI = 0; inputI < inputNodes; ++inputI){
-                newEdge = new Edge(weightGen.getNewWeight(),
+                newEdge = new Edge(weightGen.getWeight(),
                     this->inputs.at(inputI),
                     this->hidden.at(0).at(outputI));
 
@@ -89,7 +89,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
 
             for(int outputI = 0; outputI < hiddenLayers.at(layerI); ++outputI){
                 for(int inputI = 0; inputI < hiddenLayers.at(layerI - 1); ++inputI){
-                    newEdge = new Edge(weightGen.getNewWeight(),
+                    newEdge = new Edge(weightGen.getWeight(),
                         this->hidden.at(layerI - 1).at(inputI),
                         this->hidden.at(layerI).at(outputI));
 
@@ -117,7 +117,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
 
         for(int outputI = 0; outputI < outputNodes; ++outputI){
             for(int inputI = 0; inputI < hiddenLayers.at(lastHiddenI); ++inputI){
-                newEdge = new Edge(weightGen.getNewWeight(),
+                newEdge = new Edge(weightGen.getWeight(),
                     this->hidden.at(lastHiddenI).at(outputI),
                     this->outputs.at(outputI));
 
