@@ -15,6 +15,7 @@ class ConnectedNet{
         std::vector<InputNode*> inputs;
         std::vector<std::vector<Neuron*> > hidden;
         std::vector<OutputNeuron*> outputs;
+        InputNode* bias = nullptr;
 
         // Constants for weight initialization
         constexpr static double WEIGHT_INIT_MIN = -1.0;

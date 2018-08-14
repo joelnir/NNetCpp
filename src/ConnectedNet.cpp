@@ -37,14 +37,15 @@ ConnectedNet::ConnectedNet(int inputNodes,
         ConnectedNet::WEIGHT_INIT_MIN,
         ConnectedNet::WEIGHT_INIT_MAX);
 
+    // Set up bias InputNode for use in all Neurons
+    this->bias = new InputNode(1.0);
+
     // Variables needed when creating weights
     std::vector<Edge*> inputs = std::vector<Edge*>();
     Edge* newEdge;
 
     if(hiddenLayers.size() == 0){
         // Special case: no hidden layer, connect inputs directly to outputs
-
-
         for(int outputI = 0; outputI < outputNodes; ++outputI){
             for(int inputI = 0; inputI < inputNodes; ++inputI){
                 newEdge = new Edge(weightGen.getWeight(),
@@ -53,6 +54,12 @@ ConnectedNet::ConnectedNet(int inputNodes,
 
                 inputs.push_back(newEdge);
             }
+
+            // Add bias input
+            newEdge = new Edge(weightGen.getWeight(),
+                this->bias,
+                this->outputs.at(outputI));
+            inputs.push_back(newEdge);
 
             // Set all created edges as inputs for OutputNode at index outputI
             this->outputs.at(outputI)->setInputs(inputs);
@@ -72,6 +79,12 @@ ConnectedNet::ConnectedNet(int inputNodes,
 
                 inputs.push_back(newEdge);
             }
+
+            // Add bias input
+            newEdge = new Edge(weightGen.getWeight(),
+                this->bias,
+                this->hidden.at(0).at(outputI));
+            inputs.push_back(newEdge);
 
             // Set all created edges as inputs
             // for Neuron in hidden layer 0 at index outputI
@@ -96,6 +109,12 @@ ConnectedNet::ConnectedNet(int inputNodes,
                     inputs.push_back(newEdge);
                     outputs.at(outputI).push_back(newEdge);
                 }
+
+                // Add bias input
+                newEdge = new Edge(weightGen.getWeight(),
+                    this->bias,
+                    this->hidden.at(layerI).at(outputI));
+                inputs.push_back(newEdge);
 
                 // Set all created edges as inputs
                 // for Neuron in hidden layer 0 at index outputI
@@ -125,6 +144,12 @@ ConnectedNet::ConnectedNet(int inputNodes,
                 outputs.at(inputI).push_back(newEdge);
             }
 
+            // Add bias input
+            newEdge = new Edge(weightGen.getWeight(),
+                this->bias,
+                this->outputs.at(outputI));
+            inputs.push_back(newEdge);
+
             // Set all created edges as inputs
             // for OutputNeuron at index outputI
             this->outputs.at(outputI)->setInputs(inputs);
@@ -137,7 +162,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
     }
 }
 
- ConnectedNet::~ConnectedNet(){
+ConnectedNet::~ConnectedNet(){
     // TODO Clear memory for all Nodes and Neurons
 }
 
