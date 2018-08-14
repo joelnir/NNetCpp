@@ -178,7 +178,30 @@ ConnectedNet::ConnectedNet(int inputNodes,
 }
 
 ConnectedNet::~ConnectedNet(){
-    // TODO Clear memory for all Nodes and Neurons
+    // Clear bias
+    delete this->bias;
+
+    // Clear Nodes
+    for(InputNode* input : this->inputs){
+        delete input;
+    }
+
+    for(std::vector<Neuron*> layer : this->hidden){
+        for(Neuron* n : layer){
+            delete n;
+        }
+    }
+
+    for(OutputNeuron* output : this->outputs){
+        delete output;
+    }
+
+    // Clear Edges
+    for(std::vector<Edge*> edgeLayer : this->edges){
+        for(Edge* e : edgeLayer){
+            delete e;
+        }
+    }
 }
 
 std::vector<double> getOutput(std::vector<double> inputValues){
