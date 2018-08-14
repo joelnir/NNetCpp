@@ -204,6 +204,29 @@ ConnectedNet::~ConnectedNet(){
     }
 }
 
-std::vector<double> getOutput(std::vector<double> inputValues){
+std::vector<double> ConnectedNet::getOutput(std::vector<double> inputValues){
+    // Set input values
+    for(int inputI = 0; inputI < this->inputs.size(); ++inputI){
+        this->inputs.at(inputI)->setValue(inputValues.at(inputI));
+    }
 
+    // Calculate outputs input -> hidden -> outputs
+    // Hidden layers
+    for(std::vector<Neuron*> layer : this->hidden){
+        for(Neuron* n : layer){
+            n->calcOutput();
+        }
+    }
+
+    // Prepare output vector
+    std::vector<double> netOutput;
+
+    // Output layer
+    for(OutputNeuron* output : this->outputs){
+        // Calculate and directly save output
+        output->calcOutput();
+        netOutput.push_back(output->getOutput());
+    }
+
+    return netOutput;
 }

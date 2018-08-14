@@ -22,6 +22,11 @@ class InputNode: public Node {
          * Get the output value of the input node
          */
         double getOutput();
+
+        /**
+         * Set value of the input node
+         */
+        void setValue(double value);
 };
 
 #endif // INPUT_NODE_H
