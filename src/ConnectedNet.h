@@ -17,6 +17,8 @@ class ConnectedNet{
         std::vector<OutputNeuron*> outputs;
         InputNode* bias = nullptr;
 
+        std::vector<std::vector<Edge*> > edges;
+
         // Constants for weight initialization
         constexpr static double WEIGHT_INIT_MIN = -1.0;
         constexpr static double WEIGHT_INIT_MAX = 1.0;
