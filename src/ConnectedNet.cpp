@@ -239,3 +239,34 @@ std::vector<double> ConnectedNet::getOutput(std::vector<double> inputValues){
 
     return netOutput;
 }
+
+void ConnectedNet::train(std::vector<double> inputValues,
+        std::vector<double> targetValues, double learningRate){
+    // First calculate output, we don't care for output
+    this->getOutput(inputValues);
+
+    // Set targets and start backpropagation from output neurons
+    OutputNeuron* curOutput;
+    for(int outputI = 0; outputI < this->outputs.size(); ++outputI){
+        curOutput = this->outputs.at(outputI);
+        curOutput->setTarget(targetValues.at(outputI));
+        curOutput->calcDelta();
+    }
+
+    // Backpropagate through hidden layers (back to front)
+    // Only do if any hidden layers are present
+    for(int layerI = (this->hidden.size() - 1); layerI >= 0; --layerI){
+        for(int neuronI = 0; neuronI < this->hidden.at(layerI).size(); ++neuronI){
+            this->hidden.at(layerI).at(neuronI)->calcDelta();
+        }
+    }
+
+    // No deltas for input neurons
+
+    // Update edge weights, order is irrelevant
+    for(std::vector<Edge*> edgeLayer : this->edges){
+        for(Edge* edge : edgeLayer){
+            edge->updateWeight(learningRate);
+        }
+    }
+}

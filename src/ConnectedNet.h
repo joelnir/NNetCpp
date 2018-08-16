@@ -37,6 +37,13 @@ class ConnectedNet{
          * Present an input to the ConnectedNet and get the output
          */
         std::vector<double> getOutput(std::vector<double> inputValues);
+
+        /**
+         * Train the net on one input - target vector pair with speed learningrate
+         * returns the error
+         */
+        void train(std::vector<double> inputValues,
+                std::vector<double> targetValues, double learningrate);
 };
 
 #endif // CONNECTED_NET_H
