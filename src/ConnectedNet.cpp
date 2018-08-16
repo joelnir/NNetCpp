@@ -240,13 +240,13 @@ std::vector<double> ConnectedNet::getOutput(std::vector<double> inputValues){
     return netOutput;
 }
 
-void ConnectedNet::train(std::vector<double> inputValues,
-        std::vector<double> targetValues, double learningRate){
+void ConnectedNet::train(TrainingData& tData, double learningRate){
     // First calculate output, we don't care for output
-    this->getOutput(inputValues);
+    this->getOutput(tData.getInput());
 
     // Set targets and start backpropagation from output neurons
     OutputNeuron* curOutput;
+    std::vector<double> targetValues = tData.getTarget();
     for(int outputI = 0; outputI < this->outputs.size(); ++outputI){
         curOutput = this->outputs.at(outputI);
         curOutput->setTarget(targetValues.at(outputI));

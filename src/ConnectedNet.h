@@ -7,6 +7,7 @@
 #include "Neuron.h"
 #include "WeightGenerator.h"
 #include "OutputNeuron.h"
+#include "TrainingData.h"
 
 /**
  * A fully connected Neural Net
@@ -42,8 +43,7 @@ class ConnectedNet{
          * Train the net on one input - target vector pair with speed learningrate
          * returns the error
          */
-        void train(std::vector<double> inputValues,
-                std::vector<double> targetValues, double learningrate);
+        void train(TrainingData& tData, double learningrate);
 
         /**
          * Get a vector of difference between target and output
