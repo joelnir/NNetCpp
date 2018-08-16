@@ -15,6 +15,7 @@ TEST(Delta, output1){
 
     o1.calcOutput();
     ASSERT_NEAR(o1.getOutput(), 0.5, EPSILON);
+    ASSERT_NEAR(o1.getDifference(), 0.5, EPSILON);
 
     o1.calcDelta();
 
@@ -38,6 +39,7 @@ TEST(Delta, output2){
 
     o1.calcOutput();
     ASSERT_NEAR(o1.getOutput(), 0.880797077977, EPSILON);
+    ASSERT_NEAR(o1.getDifference(), 0.1192029220229998, EPSILON);
 
     o1.calcDelta();
 
