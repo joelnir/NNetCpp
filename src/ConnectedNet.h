@@ -5,6 +5,7 @@
 
 #include "InputNode.h"
 #include "Neuron.h"
+#include "WeightGenerator.h"
 #include "OutputNeuron.h"
 
 /**
@@ -19,15 +20,13 @@ class ConnectedNet{
 
         std::vector<std::vector<Edge*> > edges;
 
-        // Constants for weight initialization
-        constexpr static double WEIGHT_INIT_MIN = -1.0;
-        constexpr static double WEIGHT_INIT_MAX = 1.0;
     public:
         /**
          * Create a new ConnectedNet with specified amount of input, hidden
-         * and output nodes
+         * and output nodes using specified version of weight generation
          */
-        ConnectedNet(int inputNodes, std::vector<int> hiddenLayers, int outputNodes);
+        ConnectedNet(int inputNodes, std::vector<int> hiddenLayers,
+                int outputNodes, WeightGenerator* weightGen = nullptr);
 
         /**
          * Destructor for ConnectedNet, clears all memory allocated

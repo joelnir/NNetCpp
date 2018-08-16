@@ -3,7 +3,17 @@
 #include "NNetUtil.h"
 
 ConnectedNet::ConnectedNet(int inputNodes,
-    std::vector<int> hiddenLayers, int outputNodes){
+    std::vector<int> hiddenLayers, int outputNodes,
+    WeightGenerator* weightGen){
+
+    // If weight generator has been allocated on heap and should be cleared
+    bool generatorAllocated = false;
+
+    // Use random weight generator if no other given
+    if(!weightGen){
+        weightGen = new RandomWeightGenerator();
+        generatorAllocated = true;
+    }
 
     // Always use sigmoid function for activation
     auto activationFunc = NNetUtil::sigmoid;
@@ -33,12 +43,6 @@ ConnectedNet::ConnectedNet(int inputNodes,
         this->outputs.push_back(new OutputNeuron(activationFunc));
     }
 
-    // Set up edges between layers
-    // Initialize random generator
-    RandomWeightGenerator weightGen = RandomWeightGenerator(
-        ConnectedNet::WEIGHT_INIT_MIN,
-        ConnectedNet::WEIGHT_INIT_MAX);
-
     // Set up bias InputNode for use in all Neurons
     this->bias = new InputNode(1.0);
 
@@ -55,7 +59,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
         // Special case: no hidden layer, connect inputs directly to outputs
         for(int outputI = 0; outputI < outputNodes; ++outputI){
             for(int inputI = 0; inputI < inputNodes; ++inputI){
-                newEdge = new Edge(weightGen.getWeight(),
+                newEdge = new Edge(weightGen->getWeight(),
                     this->inputs.at(inputI),
                     this->outputs.at(outputI));
 
@@ -64,7 +68,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
             }
 
             // Add bias input
-            newEdge = new Edge(weightGen.getWeight(),
+            newEdge = new Edge(weightGen->getWeight(),
                 this->bias,
                 this->outputs.at(outputI));
             this->edges.at(0).push_back(newEdge);
@@ -82,7 +86,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
         // input -> first hidden layer
         for(int outputI = 0; outputI < hiddenLayers.at(0); ++outputI){
             for(int inputI = 0; inputI < inputNodes; ++inputI){
-                newEdge = new Edge(weightGen.getWeight(),
+                newEdge = new Edge(weightGen->getWeight(),
                     this->inputs.at(inputI),
                     this->hidden.at(0).at(outputI));
 
@@ -91,7 +95,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
             }
 
             // Add bias input
-            newEdge = new Edge(weightGen.getWeight(),
+            newEdge = new Edge(weightGen->getWeight(),
                 this->bias,
                 this->hidden.at(0).at(outputI));
             this->edges.at(0).push_back(newEdge);
@@ -113,7 +117,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
 
             for(int outputI = 0; outputI < hiddenLayers.at(layerI); ++outputI){
                 for(int inputI = 0; inputI < hiddenLayers.at(layerI - 1); ++inputI){
-                    newEdge = new Edge(weightGen.getWeight(),
+                    newEdge = new Edge(weightGen->getWeight(),
                         this->hidden.at(layerI - 1).at(inputI),
                         this->hidden.at(layerI).at(outputI));
 
@@ -123,7 +127,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
                 }
 
                 // Add bias input
-                newEdge = new Edge(weightGen.getWeight(),
+                newEdge = new Edge(weightGen->getWeight(),
                     this->bias,
                     this->hidden.at(layerI).at(outputI));
                 this->edges.at(layerI).push_back(newEdge);
@@ -149,7 +153,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
 
         for(int outputI = 0; outputI < outputNodes; ++outputI){
             for(int inputI = 0; inputI < hiddenLayers.at(lastHiddenI); ++inputI){
-                newEdge = new Edge(weightGen.getWeight(),
+                newEdge = new Edge(weightGen->getWeight(),
                     this->hidden.at(lastHiddenI).at(outputI),
                     this->outputs.at(outputI));
 
@@ -159,7 +163,7 @@ ConnectedNet::ConnectedNet(int inputNodes,
             }
 
             // Add bias input
-            newEdge = new Edge(weightGen.getWeight(),
+            newEdge = new Edge(weightGen->getWeight(),
                 this->bias,
                 this->outputs.at(outputI));
             this->edges.at(lastHiddenI + 1).push_back(newEdge);
@@ -174,6 +178,11 @@ ConnectedNet::ConnectedNet(int inputNodes,
         for(int inputI = 0; inputI < hiddenLayers.at(lastHiddenI); ++inputI){
             this->hidden.at(lastHiddenI).at(inputI)->setOutputs(outputs.at(inputI));
         }
+    }
+
+    // Clear possible allocated memory
+    if(generatorAllocated){
+        delete weightGen;
     }
 }
 
