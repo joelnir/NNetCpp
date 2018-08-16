@@ -2,7 +2,6 @@
 #define NODE_H
 
 class Node {
-    private:
     public:
         virtual double getOutput() = 0;
 };

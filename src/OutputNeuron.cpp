@@ -14,7 +14,7 @@ OutputNeuron::OutputNeuron(std::function<double(double)> activationFunc,
 
 double OutputNeuron::calcDelta(){
     double sigDelta = this->sigmoidDelta();
-    double targetDiff = (this->targetValue - this->getOutput());
+    double targetDiff = this->getDifference();
 
     // Store delta
     this->delta = targetDiff * sigDelta;
@@ -22,4 +22,8 @@ double OutputNeuron::calcDelta(){
 
 void OutputNeuron::setTarget(double targetValue){
     this->targetValue = targetValue;
+}
+
+double OutputNeuron::getDifference(){
+    return this->targetValue - this->getOutput();
 }

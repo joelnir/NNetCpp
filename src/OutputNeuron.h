@@ -36,6 +36,11 @@ class OutputNeuron: public Neuron{
          * Set the target value of the OutputNeuron
          */
         void setTarget(double targetValue);
+
+        /**
+         * Get the difference between actual output and target
+         */
+        double getDifference();
 };
 
 #endif // OUTPUT_NEURON_H
