@@ -44,6 +44,11 @@ class ConnectedNet{
          */
         void train(std::vector<double> inputValues,
                 std::vector<double> targetValues, double learningrate);
+
+        /**
+         * Get a vector of difference between target and output
+         */
+        std::vector<double> getDifference();
 };
 
 #endif // CONNECTED_NET_H

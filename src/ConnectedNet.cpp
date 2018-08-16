@@ -270,3 +270,12 @@ void ConnectedNet::train(std::vector<double> inputValues,
         }
     }
 }
+
+std::vector<double> ConnectedNet::getDifference(){
+    std::vector<double> diffs;
+
+    for(OutputNeuron* output : this->outputs){
+        diffs.push_back(output->getDifference());
+    }
+    return diffs;
+}
