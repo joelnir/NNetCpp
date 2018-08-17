@@ -5,14 +5,14 @@ RM_FLAGS := -f
 BUILD_DIR ?= ./build
 
 TARGET ?= nnet.out
-SRC_DIRS ?= ./src
+SRC_DIRS ?= ./src ./examples
 
 TEST_TARGET ?= test.out
 TEST_DIRS ?= ./tests
 
 MKDIR_P ?= mkdir -p
 
-MAIN_SRC := $(SRC_DIRS)/main.cpp
+MAIN_SRC := ./src/main.cpp
 SRCS := $(shell find $(SRC_DIRS) \( -name "*.cpp" -or -name "*.c" -or -name "*.s" \) -and ! -name "main.cpp")
 TEST_SRCS := $(shell find $(TEST_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 
