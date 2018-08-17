@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "../src/ConnectedNet.h"
+#include "../src/TrainingData.h"
 #include "../src/ConstantWeightGenerator.h"
 
 const double EPSILON = 0.0000001;
@@ -84,7 +85,8 @@ TEST(ConnectedNet, training_single){
     std::vector<double> ones = std::vector<double>();
     ones.push_back(1.0);
 
-    cn.train(ones, ones, 1.0);
+    TrainingData tData = TrainingData(ones, ones);
+    cn.train(tData, 1.0);
 
     ASSERT_NEAR(cn.getDifference().at(0), 0.1192029221, EPSILON);
 
@@ -107,7 +109,9 @@ TEST(ConnectedNet, training_small){
     target.push_back(1.0);
     target.push_back(0.0);
 
-    cn.train(input, target, 1.5);
+    TrainingData tData = TrainingData(input, target);
+    cn.train(tData, 1.5);
+
     std::vector<double> diff = cn.getDifference();
     ASSERT_NEAR(diff.at(0), 0.0183101370044, EPSILON);
     ASSERT_NEAR(diff.at(1), -0.9816898629956, EPSILON);

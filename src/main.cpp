@@ -1,14 +1,20 @@
 #include <iostream>
 #include <vector>
 
-#include "Neuron.h"
-#include "InputNode.h"
-#include "OutputNeuron.h"
-#include "Edge.h"
-#include "NNetUtil.h"
 #include "ConnectedNet.h"
+#include "NetTraining.h"
+#include "IterationCondition.h"
 
 int main(){
-    std::vector<int> hiddenLayers = std::vector<int>(10, 100);
-    ConnectedNet net = ConnectedNet(3, hiddenLayers, 3);
+    std::vector<int> hiddenLayers = std::vector<int>(1, 2);
+    ConnectedNet net = ConnectedNet(2, hiddenLayers, 2);
+
+    IterationCondition stopCond = IterationCondition(10);
+
+    std::vector<TrainingData> eval = std::vector<TrainingData>();
+    eval.push_back(TrainingData(std::vector<double>(2, 1.0), std::vector<double>(2, 1.0)));
+
+    NetTraining training = NetTraining(&net, eval,
+            eval, &stopCond, 1.0);
+    training.run();
 }
