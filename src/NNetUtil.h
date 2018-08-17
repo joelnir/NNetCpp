@@ -25,7 +25,7 @@ namespace NNetUtil{
      *
      * E(v1, v2) = (1/2) |v2 - v1|^2
      */
-    double squareError(std::vector<double>& v1, std::vector<double>& v2);
+    double squareError(const std::vector<double>& v1, const std::vector<double>& v2);
 }
 
 #endif // NNET_UTIL_H

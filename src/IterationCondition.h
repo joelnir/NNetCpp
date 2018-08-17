@@ -16,7 +16,7 @@ class IterationCondition: public StopCondition {
         /**
          * Control if the last iteration has been met
          */
-        bool check(int iteration, std::vector<double>& targetDifference);
+        bool check(int iteration, double error);
 };
 
 #endif // ITERATION_CONDITION_H

@@ -8,7 +8,7 @@ class StopCondition{
         /**
          * Control if the condition has been met
          */
-        virtual bool check(int iterC, std::vector<double>& targetDifference) = 0;
+        virtual bool check(int iterC, double error) = 0;
 };
 
 #endif // STOP_CONDITION_H

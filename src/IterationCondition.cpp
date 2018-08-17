@@ -3,6 +3,6 @@
 IterationCondition::IterationCondition(int stopIteration):
     stopIteration(stopIteration) {}
 
-bool IterationCondition::check(int iteration, std::vector<double>& targetDifference){
+bool IterationCondition::check(int iteration, double error){
     return (iteration >= this->stopIteration);
 }
