@@ -12,7 +12,7 @@ OutputNeuron::OutputNeuron(std::function<double(double)> activationFunc,
 OutputNeuron::OutputNeuron(std::function<double(double)> activationFunc,
     double targetValue): Neuron(activationFunc), targetValue(targetValue){}
 
-double OutputNeuron::calcDelta(){
+void OutputNeuron::calcDelta(){
     double sigDelta = this->sigmoidDelta();
     double targetDiff = this->getDifference();
 

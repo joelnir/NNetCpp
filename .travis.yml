@@ -1,0 +1,25 @@
+language: cpp
+
+branches:
+    only:
+        - master
+
+sudo: enabled
+
+before_install:
+      - sudo apt-get update
+      - sudo apt-get install -y doxygen texlive texlive-latex-extra
+
+script:
+    - make docs
+
+deploy:
+    provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    on:
+        branch: master
+    local-dir: documentation
+    repo: joelnir/NNetDocs
+    target-branch: master
