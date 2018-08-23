@@ -1,0 +1,23 @@
+language: cpp
+
+branches:
+    only:
+        - master
+        - doxygen
+
+sudo: enabled
+
+before_install:
+      - sudo apt-get update
+      - sudo apt-get install -y doxygen
+
+script: make documentation
+
+deploy:
+    provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    local-dir: documentation
+    repo: joelnir/NNetDocs
+    target-branch: master
