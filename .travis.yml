@@ -9,9 +9,10 @@ sudo: enabled
 
 before_install:
       - sudo apt-get update
-      - sudo apt-get install -y doxygen
+      - sudo apt-get install -y doxygen texlive texlive-latex-extra
 
-script: make documentation
+script:
+    - make docs
 
 deploy:
     provider: pages

@@ -58,11 +58,14 @@ test: $(BUILD_DIR)/$(TEST_TARGET)
 run: $(BUILD_DIR)/$(TARGET)
 	$(BUILD_DIR)/$(TARGET)
 
-.PHONY: clean, documentation
+.PHONY: clean, docs
 clean:
 	$(RM) -r $(BUILD_DIR) $(DOCS_DIR)
 
 docs:
 	doxygen doxygen.conf
+	cd $(DOCS_DIR)/latex && make
+	mv $(DOCS_DIR)/latex/refman.pdf $(DOCS_DIR)/NNetDocs.pdf
+	rm -r $(DOCS_DIR)/latex
 
 -include $(DEPS)
