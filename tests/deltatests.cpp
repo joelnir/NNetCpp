@@ -1,11 +1,11 @@
 #include <gtest/gtest.h>
 #include <vector>
 
-#include "../src/Neuron.h"
-#include "../src/OutputNeuron.h"
-#include "../src/InputNode.h"
-#include "../src/NNetUtil.h"
-#include "../src/Edge.h"
+#include "Neuron.h"
+#include "OutputNeuron.h"
+#include "InputNode.h"
+#include "NNetUtil.h"
+#include "Edge.h"
 
 const double EPSILON = 0.0000001;
 

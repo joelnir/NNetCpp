@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <vector>
 
-#include "../src/ConnectedNet.h"
-#include "../src/TrainingData.h"
-#include "../src/ConstantWeightGenerator.h"
+#include "ConnectedNet.h"
+#include "TrainingData.h"
+#include "ConstantWeightGenerator.h"
 
 const double EPSILON = 0.0000001;
 
