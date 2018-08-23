@@ -3,5 +3,4 @@
 #include "binaryFunctions.h"
 
 int main(){
-    trainOr();
 }

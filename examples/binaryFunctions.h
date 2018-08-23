@@ -11,5 +11,10 @@ void trainAnd();
  */
 void trainOr();
 
+/**
+ * Train a net to learn binary XOR function
+ */
+void trainXor();
+
 
 #endif // BINARY_FUNCTIONS_H
