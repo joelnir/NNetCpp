@@ -5,6 +5,9 @@
 
 #include "WeightGenerator.h"
 
+/**
+ * Weight Generator for generating random weights
+ */
 class RandomWeightGenerator: public WeightGenerator {
     private:
         std::default_random_engine engine;
@@ -17,13 +20,18 @@ class RandomWeightGenerator: public WeightGenerator {
         /**
          * Create new RandomWeightGenerator for generating weights in the interval
          * [weightMin, weightMax)
+         *
+         * @param weightMin bottom limit of random interval
+         * @param weightMax upper limit of random interval
          */
         RandomWeightGenerator(
                 double weightMin = RandomWeightGenerator::DEFAULT_MIN,
                 double weightMax = RandomWeightGenerator::DEFAULT_MAX);
 
         /**
-         * Generate a new random weight
+         * Generate a new random weight\n
+         * Inherits:\n
+         * @copydoc WeightGenerator::getWeight
          */
         double getWeight();
 };

@@ -3,6 +3,10 @@
 
 #include "StopCondition.h"
 
+/**
+ * Condition for stopping Neural Network training after
+ * a fixed amount of training iterations
+ */
 class IterationCondition: public StopCondition {
     private:
         int stopIteration = 0;
@@ -10,11 +14,15 @@ class IterationCondition: public StopCondition {
         /**
          * Create a new IterationCondition that will allow
          * given amount of iterations
+         *
+         * @param allowedIteration amount of iterations to allow
          */
         IterationCondition(int allowedIterations);
 
         /**
-         * Control if the last iteration has been met
+         * Control if the last iteration has been met\n
+         * Inherits:\n
+         * @copydoc StopCondition::check
          */
         bool check(int iteration, double error);
 };

@@ -57,11 +57,11 @@ test: $(BUILD_DIR)/$(TEST_TARGET)
 run: $(BUILD_DIR)/$(TARGET)
 	$(BUILD_DIR)/$(TARGET)
 
-documentation: $(SRC_DIRS)
-	doxygen doxygen.conf
-
-.PHONY: clean
+.PHONY: clean, documentation
 clean:
 	$(RM) -r $(BUILD_DIR)
+
+documentation:
+	doxygen doxygen.conf
 
 -include $(DEPS)

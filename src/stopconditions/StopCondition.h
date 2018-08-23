@@ -3,10 +3,19 @@
 
 #include <vector>
 
+/**
+ * Interface for classes describing conditions for
+ * whether to continue training Neural Nets
+ */
 class StopCondition{
     public:
         /**
          * Control if the condition has been met
+         *
+         * @param iterC amount of training iterations ran
+         * @param error current error from evaluation
+         *
+         * @return if training is done
          */
         virtual bool check(int iterC, double error) = 0;
 };
