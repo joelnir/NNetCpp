@@ -34,7 +34,7 @@ class ConnectedNet{
          * @param hiddenLayers vector of dimensions of hidden layers, number
          * at each index becomes amount of neurons in hidden layer at that index
          * @param outputNodes amount of outputs from the network
-         * @param weighGen generator to use for initializing weights in the network,
+         * @param weightGen generator to use for initializing weights in the network,
          * if left a nullptr it is replaced with a default random generator
          */
         ConnectedNet(int inputNodes, std::vector<int> hiddenLayers,
@@ -61,7 +61,7 @@ class ConnectedNet{
          * @param tData a piece of training data to use for training the net
          * @param learningRate rate to adjust weights in training
          */
-        void train(TrainingData& tData, double learningrate);
+        void train(TrainingData& tData, double learningRate);
 
         /**
          * Get a vector of difference between target and output

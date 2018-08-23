@@ -51,7 +51,7 @@ class NetTraining{
          */
         NetTraining(ConnectedNet* net, std::vector<TrainingData> trainingData,
                 std::vector<TrainingData> evalData, StopCondition* stopper,
-                double learnigRate, int trainingPerIteration = 1);
+                double learningRate, int trainingPerIteration = 1);
 
         /**
          * Start the training and run until the stop condition is met

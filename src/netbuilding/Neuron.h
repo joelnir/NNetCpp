@@ -22,6 +22,9 @@ class Neuron: public Node {
         std::function<double(double)> activationFunc;
 
     protected:
+        /**
+         * Delta for backpropagation
+         */
         double delta = 0;
 
         /**

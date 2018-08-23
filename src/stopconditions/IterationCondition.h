@@ -15,7 +15,7 @@ class IterationCondition: public StopCondition {
          * Create a new IterationCondition that will allow
          * given amount of iterations
          *
-         * @param allowedIteration amount of iterations to allow
+         * @param allowedIterations amount of iterations to allow
          */
         IterationCondition(int allowedIterations);
 
