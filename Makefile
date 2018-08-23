@@ -3,6 +3,7 @@ RM=rm
 RM_FLAGS := -f
 
 BUILD_DIR ?= ./build
+DOCS_DIR ?= ./documentation
 
 TARGET ?= nnet.out
 SRC_DIRS ?= ./src ./examples
@@ -59,9 +60,9 @@ run: $(BUILD_DIR)/$(TARGET)
 
 .PHONY: clean, documentation
 clean:
-	$(RM) -r $(BUILD_DIR)
+	$(RM) -r $(BUILD_DIR) $(DOCS_DIR)
 
-documentation:
+docs:
 	doxygen doxygen.conf
 
 -include $(DEPS)
