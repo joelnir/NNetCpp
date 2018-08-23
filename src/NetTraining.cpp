@@ -7,7 +7,7 @@ NetTraining::NetTraining(ConnectedNet* net, std::vector<TrainingData> trainingDa
                 std::vector<TrainingData> evalData, StopCondition* stopper,
                 double learningRate, int trainingPerIteration):
     net(net), trainingData(trainingData), evalData(evalData),
-    stopper(stopper), trainingPerIteration(trainingPerIteration) {}
+    stopper(stopper), learningRate(learningRate), trainingPerIteration(trainingPerIteration) {}
 
 void NetTraining::printInfo(){
     std::cout << std::endl;
