@@ -27,7 +27,9 @@ TEST_DEPS := $(TEST_OBJS:.o=.d)
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
+GTKFLAGS := `pkg-config gtkmm-3.0 --cflags --libs`
+CPPFLAGS ?= $(INC_FLAGS) -MMD -MP  $(GTKFLAGS)
+LDFLAGS := $(GTKFLAGS)
 
 TEST_FLAGS := -lgtest -lgtest_main -lpthread
 
@@ -36,11 +38,6 @@ $(BUILD_DIR)/$(TARGET): $(OBJS) $(MAIN_OBJ)
 
 $(BUILD_DIR)/$(TEST_TARGET): $(OBJS) $(TEST_OBJS)
 	$(CXX) $(OBJS) $(TEST_OBJS) $(TEST_FLAGS) -o $@ $(LDFLAGS)
-
-# assembly
-$(BUILD_DIR)/%.s.o: %.s
-	$(MKDIR_P) $(dir $@)
-	$(AS) $(ASFLAGS) -c $< -o $@
 
 # c++ source
 $(BUILD_DIR)/%.cpp.o: %.cpp
@@ -67,5 +64,3 @@ docs:
 	cd $(DOCS_DIR)/latex && make
 	mv $(DOCS_DIR)/latex/refman.pdf $(DOCS_DIR)/NNetDocs.pdf
 	rm -r $(DOCS_DIR)/latex
-
--include $(DEPS)
